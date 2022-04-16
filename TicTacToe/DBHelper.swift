@@ -11,12 +11,13 @@ import SQLite3
 
 class DBHelper{
     var db : OpaquePointer?
-    var path : String = "gamesDb.sqlite"
+    var path : String = "gamesDb.sqlite" //path of the SQLite database
     init(){
         self.db = createDB()
         self.createTable()
     }
     
+    //function for creating the database
     func createDB() -> OpaquePointer? {
         let filePath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathExtension(path)
         
@@ -31,6 +32,7 @@ class DBHelper{
         }
     }
     
+    //function for creating the table in the database
     func createTable()  {
         let query = "CREATE TABLE IF NOT EXISTS games(id INTEGER PRIMARY KEY AUTOINCREMENT, p1stepsX TEXT, p1stepsY TEXT, p2stepsX TEXT, p2stepsY TEXT, outcome TEXT)" //I changed arrays to 'TEXT' from 'BLOBs'
         var createTable : OpaquePointer? = nil
@@ -46,6 +48,7 @@ class DBHelper{
         }
     }
     
+    //function for inserting a new game into the database table 'games'
     func insert(p1stepsX: [Int], p1stepsY: [Int], p2stepsX: [Int], p2stepsY: [Int], outcome: String){
         let query = "INSERT INTO games (id, p1stepsX, p1stepsY, p2stepsX, p2stepsY, outcome) VALUES (?, ?, ?, ?, ?, ?)"
         
@@ -89,7 +92,7 @@ class DBHelper{
         }
     }
     
-    //Need to have a function for reading data?
+    //function for querying all data in the database
     func read() -> [Game]{
         var list = [Game]()
         
@@ -119,9 +122,7 @@ class DBHelper{
                 list.append(model)
             }
         }
-        
-        //TODO: need to have an alert here (or maybe elsewhere?)
-        
+                
         return list
     }
     

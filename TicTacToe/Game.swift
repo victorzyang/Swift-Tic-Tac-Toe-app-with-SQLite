@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Game: Codable{ //this part looks good to me?
+class Game: Codable{ //the Game class represents a game that is played and added to the database when game is over
     var id : Int = 1
     var p1stepsX : [Int]?
     var p1stepsY : [Int]?

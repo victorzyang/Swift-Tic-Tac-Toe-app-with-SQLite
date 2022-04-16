@@ -2,15 +2,14 @@
 //  DrawView.swift
 //  TicTacToe
 //
-//  Created by gliao on 2020-03-24.
+//  Created by Victor Yang
 //  Copyright © 2020 COMP2601. All rights reserved.
-// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 //
 
 import Foundation
 import UIKit
 
-extension UIView {
+extension UIView { //needed for calling UIViewController (ie. ViewController.swift) from UIView
     var parentViewController: UIViewController? {
         // Starts from next (As we know self is not a UIViewController).
         var parentResponder: UIResponder? = self.next
@@ -345,14 +344,16 @@ class DrawView: UIView {
             currentCurves.removeAll();
         }
         
-        if let winner = board?.getWinner() {
+        if let winner = board?.getWinner() { //creates all required data to insert a row into database whenever there's a winner
             errorMessage = "Player \(winner) wins!";
             
+            //these are the int array attributes for a row
             var p1stepsX = [Int]()
             var p1stepsY = [Int]()
             var p2stepsX = [Int]()
             var p2stepsY = [Int]()
             
+            //determines where an X or an O was played on the game board
             for row in 0..<3 {
                 for col in 0..<3 {
                     if (board?.getBoard()[row][col].get() == "X") {
@@ -365,25 +366,22 @@ class DrawView: UIView {
                 }
             }
             
-            //Debugging
-            /*for <#item#> in <#items#> {
-                <#code#>
-            }*/
-            
-            let outcome = "Player \(winner) Win" //This is correct
+            let outcome = "Player \(winner) Win" //The attribute for the outcome
             print("The outcome is " + outcome)
             
-            let vc: ViewController = self.parentViewController! as! ViewController
+            let vc: ViewController = self.parentViewController! as! ViewController //ViewController object used to call the method for adding a row to the database
             vc.addRowToGames(p1stepsX: p1stepsX, p1stepsY: p1stepsY, p2stepsX: p2stepsX, p2stepsY: p2stepsY, outcome: outcome)
         }
-        else if board != nil && board!.isFull() {
+        else if board != nil && board!.isFull() { //creates all required data to insert a row into database whenever game ends in a tie
             errorMessage = "It's a tie!";
             
+            //these are the int array attributes for a row
             var p1stepsX = [Int]()
             var p1stepsY = [Int]()
             var p2stepsX = [Int]()
             var p2stepsY = [Int]()
             
+            //determines where an X or an O was played on the game board
             for row in 0..<3 {
                 for col in 0..<3 {
                     if (board?.getBoard()[row][col].get() == "X") {
@@ -397,7 +395,7 @@ class DrawView: UIView {
             }
             
             //Debugging
-            for row in 0..<3 {
+            /*for row in 0..<3 {
                 for col in 0..<3 {
                     if (board?.getBoard()[row][col].get() == "X") {
                         print("p1 has played in column " + String(p1stepsX[col]))
@@ -407,12 +405,12 @@ class DrawView: UIView {
                         print("p2 has played in row " + String(p2stepsY[row]))
                     }
                 }
-            }
+            }*/
             
-            let outcome = "Tie"
+            let outcome = "Tie" //The attribute for the outcome
             print("The outcome is " + outcome)
             
-            let vc: ViewController = self.parentViewController! as! ViewController
+            let vc: ViewController = self.parentViewController! as! ViewController //ViewController object used to call the method for adding a row to the database
             vc.addRowToGames(p1stepsX: p1stepsX, p1stepsY: p1stepsY, p2stepsX: p2stepsX, p2stepsY: p2stepsY, outcome: outcome)
         }
         
