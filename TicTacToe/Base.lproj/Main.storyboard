@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOK-oR-kTR">
-                                <rect key="frame" x="163" y="786" width="88" height="60"/>
+                                <rect key="frame" x="121" y="664" width="186" height="99"/>
                                 <state key="normal" title="Show Data"/>
                                 <connections>
                                     <action selector="displayData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="edk-bH-oQ1"/>
@@ -25,8 +25,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wOK-oR-kTR" secondAttribute="bottom" constant="26" id="0xL-4t-rBi"/>
+                            <constraint firstItem="wOK-oR-kTR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="133" id="8Ba-LT-ySF"/>
                             <constraint firstItem="wOK-oR-kTR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bnj-xZ-Ndb"/>
                             <constraint firstItem="wOK-oR-kTR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CdG-nm-iHN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wOK-oR-kTR" secondAttribute="trailing" constant="133" id="Vv1-f3-sx8"/>
+                            <constraint firstItem="wOK-oR-kTR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="602" id="ok9-0h-xz6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
