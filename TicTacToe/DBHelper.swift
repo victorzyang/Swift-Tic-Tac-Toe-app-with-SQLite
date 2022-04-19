@@ -19,6 +19,7 @@ class DBHelper{
     
     //function for creating the database
     func createDB() -> OpaquePointer? {
+        print("Creating Database")
         let filePath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathExtension(path)
         
         var db : OpaquePointer? = nil
@@ -34,6 +35,7 @@ class DBHelper{
     
     //function for creating the table in the database
     func createTable()  {
+        print("Creating table if not exists")
         let query = "CREATE TABLE IF NOT EXISTS games(id INTEGER PRIMARY KEY AUTOINCREMENT, p1stepsX TEXT, p1stepsY TEXT, p2stepsX TEXT, p2stepsY TEXT, outcome TEXT)" //I changed arrays to 'TEXT' from 'BLOBs'
         var createTable : OpaquePointer? = nil
         
@@ -50,6 +52,7 @@ class DBHelper{
     
     //function for inserting a new game into the database table 'games'
     func insert(p1stepsX: [Int], p1stepsY: [Int], p2stepsX: [Int], p2stepsY: [Int], outcome: String){
+        print("Inserting new game into the games table")
         let query = "INSERT INTO games (id, p1stepsX, p1stepsY, p2stepsX, p2stepsY, outcome) VALUES (?, ?, ?, ?, ?, ?)"
         
         var statement : OpaquePointer? = nil
@@ -95,6 +98,7 @@ class DBHelper{
     //function for querying all data in the database
     func read() -> [Game]{
         var list = [Game]()
+        print("Select all games from the games table")
         
         let query = "SELECT * FROM games;"
         var statement : OpaquePointer? = nil
